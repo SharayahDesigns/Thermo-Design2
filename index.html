@@ -1,0 +1,208 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="temp-reading_container">
+        <div class="circle-temp_container">
+            <div class="two-columns-temp">
+                <div class="circle-align">
+                    <div class="circle-temp-name">Obsidian Tower</div>
+                    <div class="circle-temp-date">05/10/2023</div>
+
+                    <div class="circle-container">
+                        <div class="thermo-circle"></div>
+                        <div class='thermo-inner-circle'></div>
+                        <div class="thermo-motion" data-title="Motion Detected">
+                            <?xml version="1.0" encoding="UTF-8"?>
+                            <svg class="temp-icons">
+                                <use href="/sprite-sheet.svg#new_green-motion"></use>
+                            </svg>
+                        </div>
+                        <div class="thermo-stats">38.8<span>°F</span></div>
+                        <div class="thermo-humid">40% Humidity</div>
+                        <div class="thermo-buttons">
+                            <div class="thermo-minus">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <svg class="temp-icons">
+                                    <use href="/sprite-sheet.svg#new_minus"></use>
+                                </svg>
+                            </div>
+                            <div class="thermo-plus">
+                                <?xml version="1.0" encoding="UTF-8"?>
+
+                                <svg class="temp-icons">
+                                    <use href="/sprite-sheet.svg#new_add"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="thermo-phase-container">
+                            <div class="thermo-phase-btn">
+                                <?xml version="1.0" encoding="UTF-8"?>
+                                <svg class="temp-icons">
+                                    <use href="/sprite-sheet.svg#new_fire"></use>
+                                </svg>
+                            </div>
+                            <div class="thermo-phase-type">Heat Phase 1</div>
+                        </div>
+
+                        <div class="triangle-pointer"></div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="circle-temp-slider">
+                    <img class="temp-bar" title="bar" src="/images/new_thermo-bar.svg">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="data-temp_container">
+
+            <div class="data-temp-top-bar">
+
+                <div class="snow-fire-box">
+                    <div>
+                        <svg class="snow-fire-icons">
+                            <use href="/sprite-sheet.svg#new_fire"></use>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <svg class="snow-fire-icons">
+                            <use href="/sprite-sheet.svg#new_snowflake"></use>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="toggleState">
+                    <div>Auto</div>
+                </div>
+
+
+                <div class="data-temp-top-bar" style="margin-left:auto; gap:10px">
+                    <div class="option-container">
+                        <svg class="option-icons">
+                            <use href="/sprite-sheet.svg#new_fan"></use>
+                        </svg>
+                    </div>
+                    <div class="option-container">
+                        <svg class="option-icons">
+                            <use href="/sprite-sheet.svg#new_blue-motion"></use>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+
+<div class="occupied-tab">
+    <button class="tab-btns link hover-underline-animation activeAnimate  " onclick="openSelect('occupied')">Occupied</button>
+    <button class="tab-btns link hover-underline-animation " onclick="openSelect('unoccupied')">Unoccupied</button>
+</div>
+
+<div id="occupied" class="selection" >
+    <div class="all-box-container">
+    <div class="thermo-box-container">
+  <div><svg class="tab-icons">
+    <use href="/sprite-sheet.svg#new_minus"></use>
+</svg></div>
+  <div class="thermo-box-above">
+    <div>Above</div>
+  <div class="thermo-temp-set">42</div>
+</div>
+  <div><svg class="tab-icons">
+    <use href="/sprite-sheet.svg#new_minus"></use>
+</svg></div>
+</div>
+<div class="thermo-box-container">
+    <div><svg class="tab-icons">
+      <use href="/sprite-sheet.svg#new_minus"></use>
+  </svg></div>
+    <div class="thermo-box-below">
+        <div>Below</div>
+        <div class="thermo-temp-set">72</div>
+    </div>
+    <div><svg class="tab-icons">
+      <use href="/sprite-sheet.svg#new_minus"></use>
+  </svg></div>
+  </div>
+</div>
+</div>
+
+
+
+
+<div id="unoccupied" class="selection" style="display:none">
+    <div class="all-box-container">
+        <div class="thermo-box-container">
+      <div><svg class="tab-icons">
+        <use href="/sprite-sheet.svg#new_minus"></use>
+    </svg></div>
+      <div class="thermo-box-above">
+        <div>Above</div>
+      <div class="thermo-temp-set">22</div>
+    </div>
+      <div><svg class="tab-icons">
+        <use href="/sprite-sheet.svg#new_minus"></use>
+    </svg></div>
+    </div>
+    <div class="thermo-box-container">
+        <div><svg class="tab-icons">
+          <use href="/sprite-sheet.svg#new_minus"></use>
+      </svg></div>
+        <div class="thermo-box-below">
+            <div>Below</div>
+            <div class="thermo-temp-set">89</div>
+        </div>
+        <div><svg class="tab-icons">
+          <use href="/sprite-sheet.svg#new_minus"></use>
+      </svg></div>
+      </div>
+    </div>
+</div>
+
+        </div>
+
+
+        <div>
+
+<script>
+function openSelect(selection) {
+  var i;
+  var x = document.getElementsByClassName("selection");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(selection).style.display = "block";  
+}
+
+document.getElementsByClassName("option-icons") // add turnOn or turnOff when clicked
+document.getElementsByClassName("option-container")// click state
+
+function turnOnOff(x) {
+    
+}
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
