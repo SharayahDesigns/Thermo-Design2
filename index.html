@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -86,118 +91,141 @@
                             <use href="/sprite-sheet.svg#new_snowflake"></use>
                         </svg>
                     </div>
+                    <div class="heatColdSelect">Auto</div>
                 </div>
 
-                <div class="toggleState">
+                <!-- <div class="toggleState">
                     <div>Auto</div>
-                </div>
+                </div> -->
 
-
-                <div class="data-temp-top-bar" style="margin-left:auto; gap:10px">
-                    <div class="option-container">
+                <div class="toggle-bar">
+                <div class="dropdown">
+                    <div class="option-container dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="option-icons">
                             <use href="/sprite-sheet.svg#new_fan"></use>
                         </svg>
+                        <div class="dropdown-menu" style="width:100px;" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="fanOff" href="#">Off</a>
+                            <a class="dropdown-item" id="fan20" href="#">20m</a>
+                            <a class="dropdown-item" id="fan1h" href="#">1hr</a>
+                            <a class="dropdown-item" id="fan4h" href="#">4hr</a>
+                        </div>
                     </div>
-                    <div class="option-container">
+                </div>
+                <div class="dropdown">    
+                    <div class="option-container dropdown-toggle" type="button" id="dropdown23" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="option-icons">
                             <use href="/sprite-sheet.svg#new_blue-motion"></use>
                         </svg>
+                        <div class="dropdown-menu" style="width:100px;" aria-labelledby="dropdown23">
+                            <a class="dropdown-item" id="moveOff" href="#">Off</a>
+                            <a class="dropdown-item" id="move30" href="#">30m</a>
+                            <a class="dropdown-item" id="move1h" href="#">1hr</a>
+                            <a class="dropdown-item" id="move4h" href="#">4hr</a>
+                        </div>
                     </div>
-                </div>
+              </div>
+            </div>
 
             </div>
 
-<div class="occupied-tab">
-    <button class="tab-btns link hover-underline-animation activeAnimate  " onclick="openSelect('occupied')">Occupied</button>
-    <button class="tab-btns link hover-underline-animation " onclick="openSelect('unoccupied')">Unoccupied</button>
-</div>
+            <div class="occupied-tab">
+                <button class="tab-btns link hover-underline-animation activeAnimate  "
+                    onclick="openSelect('occupied')">Occupied</button>
+                <button class="tab-btns link hover-underline-animation "
+                    onclick="openSelect('unoccupied')">Unoccupied</button>
+            </div>
 
-<div id="occupied" class="selection" >
-    <div class="all-box-container">
-    <div class="thermo-box-container">
-  <div><svg class="tab-icons">
-    <use href="/sprite-sheet.svg#new_minus"></use>
-</svg></div>
-  <div class="thermo-box-above">
-    <div>Above</div>
-  <div class="thermo-temp-set">42</div>
-</div>
-  <div><svg class="tab-icons">
-    <use href="/sprite-sheet.svg#new_minus"></use>
-</svg></div>
-</div>
-<div class="thermo-box-container">
-    <div><svg class="tab-icons">
-      <use href="/sprite-sheet.svg#new_minus"></use>
-  </svg></div>
-    <div class="thermo-box-below">
-        <div>Below</div>
-        <div class="thermo-temp-set">72</div>
-    </div>
-    <div><svg class="tab-icons">
-      <use href="/sprite-sheet.svg#new_minus"></use>
-  </svg></div>
-  </div>
-</div>
-</div>
+            <div id="occupied" class="selection">
+                <div class="all-box-container">
+                    <div class="thermo-box-container">
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                        <div class="thermo-box-above">
+                            <div>Above</div>
+                            <div class="thermo-temp-set">42</div>
+                        </div>
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                    </div>
+                    <div class="thermo-box-container">
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                        <div class="thermo-box-below">
+                            <div>Below</div>
+                            <div class="thermo-temp-set">72</div>
+                        </div>
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                    </div>
+                </div>
+            </div>
 
 
 
 
-<div id="unoccupied" class="selection" style="display:none">
-    <div class="all-box-container">
-        <div class="thermo-box-container">
-      <div><svg class="tab-icons">
-        <use href="/sprite-sheet.svg#new_minus"></use>
-    </svg></div>
-      <div class="thermo-box-above">
-        <div>Above</div>
-      <div class="thermo-temp-set">22</div>
-    </div>
-      <div><svg class="tab-icons">
-        <use href="/sprite-sheet.svg#new_minus"></use>
-    </svg></div>
-    </div>
-    <div class="thermo-box-container">
-        <div><svg class="tab-icons">
-          <use href="/sprite-sheet.svg#new_minus"></use>
-      </svg></div>
-        <div class="thermo-box-below">
-            <div>Below</div>
-            <div class="thermo-temp-set">89</div>
-        </div>
-        <div><svg class="tab-icons">
-          <use href="/sprite-sheet.svg#new_minus"></use>
-      </svg></div>
-      </div>
-    </div>
-</div>
-
+            <div id="unoccupied" class="selection" style="display:none">
+                <div class="all-box-container">
+                    <div class="thermo-box-container">
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                        <div class="thermo-box-above">
+                            <div>Above</div>
+                            <div class="thermo-temp-set">22</div>
+                        </div>
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                    </div>
+                    <div class="thermo-box-container">
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                        <div class="thermo-box-below">
+                            <div>Below</div>
+                            <div class="thermo-temp-set">89</div>
+                        </div>
+                        <div><svg class="tab-icons">
+                                <use href="/sprite-sheet.svg#new_minus"></use>
+                            </svg></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
         <div>
 
-<script>
-function openSelect(selection) {
-  var i;
-  var x = document.getElementsByClassName("selection");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  document.getElementById(selection).style.display = "block";  
-}
+            <script>
+                function openSelect(selection) {
+                    var i;
+                    var x = document.getElementsByClassName("selection");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    document.getElementById(selection).style.display = "block";
+                }
 
-document.getElementsByClassName("option-icons") // add turnOn or turnOff when clicked
-document.getElementsByClassName("option-container")// click state
+                document.getElementsByClassName("option-icons") // add turnOn or turnOff when clicked
+                document.getElementsByClassName("option-container")// click state
 
-function turnOnOff(x) {
-    
-}
+                function turnOnOff(x) {
+
+                }
+             
+$(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+});
 
 
-</script>
+
+
+            </script>
 
 
 
