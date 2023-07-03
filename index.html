@@ -48,6 +48,9 @@
                                 </svg>
                             </div>
                         </div>
+
+
+
                         <div class="thermo-phase-container">
                             <div class="thermo-phase-btn">
                                 <?xml version="1.0" encoding="UTF-8"?>
@@ -60,17 +63,12 @@
 
                         <div class="triangle-pointer"></div>
                     </div>
-
-
-
                 </div>
 
                 <div class="circle-temp-slider">
                     <img class="temp-bar" title="bar" src="/images/new_thermo-bar.svg">
                 </div>
-
             </div>
-
 
         </div>
 
@@ -79,7 +77,77 @@
 
             <div class="data-temp-top-bar">
 
-                <div class="snow-fire-box">
+                <div class="auto-box">
+
+                    <div class="select_wrap">
+                        <ul class="default_option">
+                            <li>
+                                <div class="auto-box">
+                                    <div>
+                                        <svg class="snow-fire-icons">
+                                            <use href="/sprite-sheet.svg#new_fire"></use>
+                                        </svg>
+                                    </div>
+                
+                                    <div>
+                                        <svg class="snow-fire-icons">
+                                            <use href="/sprite-sheet.svg#new_snowflake"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="heatColdSelect">Auto</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="select_ul">
+                            <li>
+                                <div class="option pizza">
+                                    <svg class="snow-fire-icons">
+                                        <use href="/sprite-sheet.svg#new_fire"></use>
+                                    </svg>
+                                  <p>Heat</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="option burger">
+                                    <svg class="snow-fire-icons">
+                                        <use href="/sprite-sheet.svg#new_snowflake"></use>
+                                    </svg>
+                                  <p>Cool</p>
+                                </div>  
+                            </li>
+                            <li>
+                                <div class="option ice">
+                                    <div class="auto-box">
+                                        <div>
+                                            <svg class="snow-fire-icons">
+                                                <use href="/sprite-sheet.svg#new_fire"></use>
+                                            </svg>
+                                        </div>
+                    
+                                        <div>
+                                            <svg class="snow-fire-icons">
+                                                <use href="/sprite-sheet.svg#new_snowflake"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="autoselect">Auto</div>
+                                    </div>
+                                </div>  
+                            </li>
+                            <li>
+                                <div class="option ice">
+                                    <svg class="snow-fire-icons">
+                                        <use href="/sprite-sheet.svg#power-on"></use>
+                                    </svg>
+                                  <p>Off</p>
+                                </div>  
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    
+                  </div>
+
+                <!-- <div class="snow-fire-box">
                     <div>
                         <svg class="snow-fire-icons">
                             <use href="/sprite-sheet.svg#new_fire"></use>
@@ -92,7 +160,7 @@
                         </svg>
                     </div>
                     <div class="heatColdSelect">Auto</div>
-                </div>
+                </div> -->
 
                 <!-- <div class="toggleState">
                     <div>Auto</div>
@@ -126,6 +194,8 @@
                     </div>
               </div>
             </div>
+            
+
 
             </div>
 
@@ -211,18 +281,21 @@
                     document.getElementById(selection).style.display = "block";
                 }
 
-                document.getElementsByClassName("option-icons") // add turnOn or turnOff when clicked
-                document.getElementsByClassName("option-container")// click state
-
-                function turnOnOff(x) {
-
-                }
+                
              
 $(document).ready(function() {
     $('.dropdown-toggle').dropdown();
 });
 
+$(".default_option").click(function(){
+  $(this).parent().toggleClass("active");
+})
 
+$(".select_ul li").click(function(){
+  var currentele = $(this).html();
+  $(".default_option li").html(currentele);
+  $(this).parents(".select_wrap").removeClass("active");
+})
 
 
             </script>
