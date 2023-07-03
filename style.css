@@ -389,6 +389,9 @@ height:30px;
     color: var#0067ab;
     cursor: pointer
   }
+  .hover-underline-animation:focus {
+    border:none;
+  }
   
   .hover-underline-animation::after {
     content: '';
