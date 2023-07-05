@@ -30,6 +30,9 @@
                             <svg class="temp-icons">
                                 <use href="/sprite-sheet.svg#new_green-motion"></use>
                             </svg>
+                            <svg class="moving-fan">
+                                <use href="/sprite-sheet.svg#fan-is-on"></use>
+                            </svg>
                         </div>
                         <div class="thermo-stats">38.8<span>°F</span></div>
                         <div class="thermo-humid">40% Humidity</div>
@@ -61,7 +64,8 @@
                             <div class="thermo-phase-type">Heat Phase 1</div>
                         </div>
 
-                        <div class="triangle-pointer"></div>
+                        <div class="red-triangle-pointer"></div>
+                      
                     </div>
                 </div>
 
@@ -94,7 +98,7 @@
                                             <use href="/sprite-sheet.svg#new_snowflake"></use>
                                         </svg>
                                     </div>
-                                    <div class="heatColdSelect">Auto</div>
+                                    <div class="autoSelect">Auto</div>
                                 </div>
                             </li>
                         </ul>
@@ -147,52 +151,44 @@
                     
                   </div>
 
-                <!-- <div class="snow-fire-box">
-                    <div>
-                        <svg class="snow-fire-icons">
-                            <use href="/sprite-sheet.svg#new_fire"></use>
-                        </svg>
-                    </div>
-
-                    <div>
-                        <svg class="snow-fire-icons">
-                            <use href="/sprite-sheet.svg#new_snowflake"></use>
-                        </svg>
-                    </div>
-                    <div class="heatColdSelect">Auto</div>
-                </div> -->
-
-                <!-- <div class="toggleState">
-                    <div>Auto</div>
-                </div> -->
 
                 <div class="toggle-bar">
-                <div class="dropdown">
-                    <div class="option-container dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="option-icons">
-                            <use href="/sprite-sheet.svg#new_fan"></use>
-                        </svg>
-                        <div class="dropdown-menu" style="width:100px;" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" id="fanOff" href="#">Off</a>
-                            <a class="dropdown-item" id="fan20" href="#">20m</a>
-                            <a class="dropdown-item" id="fan1h" href="#">1hr</a>
-                            <a class="dropdown-item" id="fan4h" href="#">4hr</a>
-                        </div>
+               
+                <div class="menu-container">
+ 
+                    <nav>
+                      <ul class="menu">
+                        <li class="dropdown dropdown-1 option-container">
+                            <svg class="option-icons">
+                                <use href="/sprite-sheet.svg#new_fan"></use>
+                            </svg>
+                          <ul class="dropdown_menu dropdown_menu-1">
+                            <li class="dropdown_item-1">Off</li>
+                            <li class="dropdown_item-2">20m</li>
+                            <li class="dropdown_item-3">1hr</li>
+                              <li class="dropdown_item-4">4hr</li>
+                          </ul>
+                        </li>
+                    </nav>
                     </div>
-                </div>
-                <div class="dropdown">    
-                    <div class="option-container dropdown-toggle" type="button" id="dropdown23" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="option-icons">
-                            <use href="/sprite-sheet.svg#new_blue-motion"></use>
-                        </svg>
-                        <div class="dropdown-menu" style="width:100px;" aria-labelledby="dropdown23">
-                            <a class="dropdown-item" id="moveOff" href="#">Off</a>
-                            <a class="dropdown-item" id="move30" href="#">30m</a>
-                            <a class="dropdown-item" id="move1h" href="#">1hr</a>
-                            <a class="dropdown-item" id="move4h" href="#">4hr</a>
+                    <div class="menu-container">
+ 
+                        <nav>
+                          <ul class="menu">
+                            <li class="dropdown dropdown-1 option-container">
+                                <svg class="option-icons">
+                                    <use href="/sprite-sheet.svg#new_blue-motion"></use>
+                                </svg>
+                              <ul class="dropdown_menu dropdown_menu-1">
+                                <li class="dropdown_item-1">Off</li>
+                                <li class="dropdown_item-2">20m</li>
+                                <li class="dropdown_item-3">1hr</li>
+                                  <li class="dropdown_item-4">4hr</li>
+                              </ul>
+                            </li>
+                        </nav>
                         </div>
-                    </div>
-              </div>
+              
             </div>
             
 
@@ -209,30 +205,24 @@
             <div id="occupied" class="selection">
                 <div class="all-box-container">
                     <div class="thermo-box-container">
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                       
                         <div class="thermo-box-above">
                             <div>Above</div>
-                            <div class="thermo-temp-set">42</div>
+                            <input type="number" value="42" class="below-temp-set"></input>
                         </div>
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                        
                     </div>
                     <div class="thermo-box-container">
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                       
                         <div class="thermo-box-below">
                             <div>Below</div>
-                            <div class="thermo-temp-set">72</div>
+                            <input type="number" value="72" class="below-temp-set"></input>
                         </div>
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                       
                     </div>
                 </div>
+                <div class="bottom-container"> <button class="saveBtn">SAVE</button></div>
+               
             </div>
 
 
@@ -241,35 +231,27 @@
             <div id="unoccupied" class="selection" style="display:none">
                 <div class="all-box-container">
                     <div class="thermo-box-container">
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                       
                         <div class="thermo-box-above">
                             <div>Above</div>
-                            <div class="thermo-temp-set">22</div>
+                            <input type="number" value="22" class="below-temp-set"></div>
                         </div>
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
-                    </div>
+                      
+                  
                     <div class="thermo-box-container">
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                       
                         <div class="thermo-box-below">
                             <div>Below</div>
-                            <div class="thermo-temp-set">89</div>
+                            <input type="number" value="89" class="below-temp-set"></div>
                         </div>
-                        <div><svg class="tab-icons">
-                                <use href="/sprite-sheet.svg#new_minus"></use>
-                            </svg></div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
+        
         <div>
+           
 
             <script>
                 function openSelect(selection) {
