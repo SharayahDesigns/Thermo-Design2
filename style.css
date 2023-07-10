@@ -412,16 +412,22 @@ height:30px;
     cursor: pointer;
     padding: 0
   }
+
   .hover-underline-animation {
     display: inline-block;
     position: relative;
-    color: var#0067ab;
-    cursor: pointer
-  }
-  .hover-underline-animation:focus {
-    border:none;
+    cursor: pointer;
   }
   
+  .hover-underline-animation:focus {
+    outline: none;
+  }
+  .activeAnimate {
+ border-bottom: 3px solid #0067ab;
+
+  }
+  
+
   .hover-underline-animation::after {
     content: '';
     position: absolute;
@@ -430,21 +436,23 @@ height:30px;
     height: 3px;
     bottom: -5px;
     left: 0;
-    background-color:#0067ab;
+    background-color: #0067ab;
     transform-origin: bottom right;
-    transition: transform .25s ease-out
+    transition: transform .25s ease-out;
   }
   
   .hover-underline-animation:focus::after,
   .hover-underline-animation:hover::after {
     transform: scaleX(1);
-    transform-origin: bottom left
+    transform-origin: bottom left;
   }
-  .hover-underline-animation:focus::active,
-.hover-underline-animation:hover::active {
-  transform: scaleX(1);
-  transform-origin: bottom left
-}
+  
+  .hover-underline-animation:focus:active::after,
+  .hover-underline-animation:hover:active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
 
 
 /* /////////    Title Hover    /////// */
@@ -555,7 +563,7 @@ height:30px;
 .dropdown_menu li {
   display: none;
   color: #fff;
-  background-color: #34495e;
+  background-color: #0067ab;
   padding: 10px 20px;
   font-size: 16px;
   opacity: 0;

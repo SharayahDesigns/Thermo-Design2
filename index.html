@@ -196,11 +196,9 @@
             </div>
 
             <div class="occupied-tab">
-                <button class="tab-btns link hover-underline-animation activeAnimate  "
-                    onclick="openSelect('occupied')">Occupied</button>
-                <button class="tab-btns link hover-underline-animation "
-                    onclick="openSelect('unoccupied')">Unoccupied</button>
-            </div>
+                <button class="tab-btns link hover-underline-animation activeAnimate" onclick="openSelect('occupied')" data-selection="occupied">Occupied</button>
+                <button class="tab-btns link hover-underline-animation" onclick="openSelect('unoccupied')" data-selection="unoccupied">Unoccupied</button>
+              </div>
 
             <div id="occupied" class="selection">
                 <div class="all-box-container">
@@ -248,20 +246,28 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>     
         <div>
            
 
             <script>
+       
                 function openSelect(selection) {
-                    var i;
-                    var x = document.getElementsByClassName("selection");
-                    for (i = 0; i < x.length; i++) {
-                        x[i].style.display = "none";
-                    }
-                    document.getElementById(selection).style.display = "block";
-                }
+  var i;
+  var x = document.getElementsByClassName("selection");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(selection).style.display = "block";
+
+  var buttons = document.getElementsByClassName("tab-btns");
+  for (i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("activeAnimate");
+  }
+  document.querySelector("button[data-selection='" + selection + "']").classList.add("activeAnimate");
+}
+
+
 
                 
              
