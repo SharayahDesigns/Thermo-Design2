@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 
 </head>
 
@@ -71,111 +72,26 @@
 
                 <div class="circle-temp-slider">
                     <img class="temp-bar" title="bar" src="/images/new_thermo-bar.svg">
-                   
-                        <svg  width="200px" height="400"  id="half-circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.81 204.13">
-                          <path id="path"  class="path" d="m.38.32s89.5,105.77.51,203.47" fill="none"  stroke-miterlimit="10"/>
-                          
-                           <g id="drag"  draggable="true">
-                              <circle class="oval" cx="8" cy="8" r="8" />    
-                            </g>
-                            
-                           
-                        </svg>
-                          
+                  
+                    
+                     
                         </div>
-              
+                        <div class="wrap">
+                          <div class="slider-container">
+                            <input id="range" type="range" min="1" max="100" >
+                            <svg id="slider" height="50" width="450">
+                            
+                              <path id="curve" stroke="#fff" stroke-width="4" fill="none" />
+                                <circle id="thumb" stroke="#0067ab" fill="#0067ab" r="10" />
+                            </svg>
+                          </div>
+                        </div>
+                        
+                        <div id="value"></div>
             </div>
 
         </div>
-        <script>var drag = document.querySelector("#drag");
-            var path = document.querySelector("#path");
-            
-            var pathLength = path.getTotalLength() || 0;
-            var startPoint = path.getPointAtLength(0);
-            var startAngle = getRotation(startPoint, path.getPointAtLength(0.1));
-            
-            drag.addEventListener("mousedown", startDrag);
-            
-            function startDrag(event) {
-              event.preventDefault();
-              document.addEventListener("mousemove", dragElement);
-              document.addEventListener("mouseup", stopDrag);
-            }
-            
-            function stopDrag() {
-              document.removeEventListener("mousemove", dragElement);
-              document.removeEventListener("mouseup", stopDrag);
-            }
-            
-            function dragElement(event) {
-              var point = {
-                x: event.clientX,
-                y: event.clientY 
-              };
-              var containerRect = drag.parentElement.getBoundingClientRect();
-              var containerOffset = {
-                x: containerRect.left,
-                y: containerRect.top
-              };
-            
-              var p = closestPoint(path, pathLength, point, containerOffset);
-            
-              drag.style.transform = "translate(" + p.point.x + "px, " + p.point.y + "px) rotate(" + (p.rotation * (180 / Math.PI)) + "deg)";
-            }
-            
-            
-            function closestPoint(pathNode, pathLength, point, offset) {
-              var precision = 8;
-              var best;
-              var bestLength;
-              var bestDistance = Infinity;
-            
-              for (var scan, scanLength = 0, scanDistance; scanLength <= pathLength; scanLength += precision) {
-                if ((scanDistance = distance2(scan = pathNode.getPointAtLength(scanLength))) < bestDistance) {
-                  best = scan, bestLength = scanLength, bestDistance = scanDistance;
-                }
-              }
-            
-              precision /= 2;
-              while (precision > 0.5) {
-                var before;
-                var after;
-                var beforeLength;
-                var afterLength;
-                var beforeDistance;
-                var afterDistance;
-                if ((beforeLength = bestLength - precision) >= 0 && (beforeDistance = distance2(before = pathNode.getPointAtLength(beforeLength))) < bestDistance) {
-                  best = before, bestLength = beforeLength, bestDistance = beforeDistance;
-                } else if ((afterLength = bestLength + precision) <= pathLength && (afterDistance = distance2(after = pathNode.getPointAtLength(afterLength))) < bestDistance) {
-                  best = after, bestLength = afterLength, bestDistance = afterDistance;
-                } else {
-                  precision /= 2;
-                }
-              }
-            
-              var len2 = bestLength + (bestLength === pathLength ? -0.1 : 0.1);
-              var rotation = getRotation(best, pathNode.getPointAtLength(len2));
-            
-              return {
-                point: {
-                  x: best.x - offset.x,
-                  y: best.y - offset.y
-                },
-                rotation: rotation
-              };
-            
-              function distance2(p) {
-                var dx = p.x - point.x;
-                var dy = p.y - point.y;
-                return dx * dx + dy * dy;
-              }
-            }
-            
-            function getRotation(p1, p2) {
-              var dx = p2.x - p1.x;
-              var dy = p2.y - p1.y;
-              return Math.atan2(dy, dx);
-            }
+        <script>
             </script>
 
 
@@ -266,9 +182,9 @@
                             </svg>
                           <ul class="dropdown_menu dropdown_menu-1">
                             <li class="dropdown_item-1">Off</li>
-                            <li class="dropdown_item-2">20m</li>
-                            <li class="dropdown_item-3">1hr</li>
-                              <li class="dropdown_item-4">4hr</li>
+                            <li class="dropdown_item-fan">20m</li>
+                            <li class="dropdown_item-fan">1hr</li>
+                              <li class="dropdown_item-fan">4hr</li>
                           </ul>
                         </li>
                     </nav>
@@ -277,15 +193,15 @@
  
                         <nav>
                           <ul class="menu">
-                            <li class="dropdown dropdown-1 option-container">
-                                <svg class="option-icons">
+                            <li class="dropdown dropdown-2 option-container">
+                                <svg class="option-icons2">
                                     <use href="/sprite-sheet.svg#new_blue-motion"></use>
                                 </svg>
                               <ul class="dropdown_menu dropdown_menu-1">
-                                <li class="dropdown_item-1">Off</li>
-                                <li class="dropdown_item-2">20m</li>
-                                <li class="dropdown_item-3">1hr</li>
-                                  <li class="dropdown_item-4">4hr</li>
+                                <li class="dropdown_item-2">Off</li>
+                                <li class="dropdown_item-motion">20m</li>
+                                <li class="dropdown_item-motion">1hr</li>
+                                  <li class="dropdown_item-motion">4hr</li>
                               </ul>
                             </li>
                         </nav>
@@ -335,8 +251,7 @@
                         <div class="thermo-box-above">
                             <div>Above</div>
                             <input type="number" value="22" class="below-temp-set"></div>
-                        </div>
-                      
+                        </div>                     
                   
                     <div class="thermo-box-container">
                        
@@ -354,41 +269,115 @@
 
             <script>
        
-                function openSelect(selection) {
-  var i;
-  var x = document.getElementsByClassName("selection");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  document.getElementById(selection).style.display = "block";
+     
+       function openSelect(selection) {
+                var i;
+                var x = document.getElementsByClassName("selection");
+                for (i = 0; i < x.length; i++) {
+                  x[i].style.display = "none";
+                }
+                document.getElementById(selection).style.display = "block";
+              
+                var buttons = document.getElementsByClassName("tab-btns");
+                for (i = 0; i < buttons.length; i++) {
+                  buttons[i].classList.remove("activeAnimate");
+                }
+                document.querySelector("button[data-selection='" + selection + "']").classList.add("activeAnimate");
+              }
+                     
+              $(document).ready(function() {
+                  $('.dropdown-toggle').dropdown();
+              });
+              
+              $(".default_option").click(function(){
+                $(this).parent().toggleClass("active");
+              })
+              
+              $(".select_ul li").click(function(){
+                var currentele = $(this).html();
+                $(".default_option li").html(currentele);
+                $(this).parents(".select_wrap").removeClass("active");
+              })
 
-  var buttons = document.getElementsByClassName("tab-btns");
-  for (i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove("activeAnimate");
-  }
-  document.querySelector("button[data-selection='" + selection + "']").classList.add("activeAnimate");
-}
+              $(document).ready(function() {
+  $(".dropdown_item-fan").click(function() {
+    $(".option-icons").removeClass("active");
+    $(this).closest(".dropdown-1").find(".option-icons").addClass("active");
+  });
 
-
-
-                
-             
-$(document).ready(function() {
-    $('.dropdown-toggle').dropdown();
+  $(".dropdown_item-1").click(function() {
+    $(".option-icons").removeClass("active");
+  });
 });
 
-$(".default_option").click(function(){
-  $(this).parent().toggleClass("active");
-})
+$(document).ready(function() {
+  $(".dropdown_item-motion").click(function() {
+    $(".option-icons2").removeClass("active");
+    $(this).closest(".dropdown-2").find(".option-icons2").addClass("active");
+  });
 
-$(".select_ul li").click(function(){
-  var currentele = $(this).html();
-  $(".default_option li").html(currentele);
-  $(this).parents(".select_wrap").removeClass("active");
-})
+  $(".dropdown_item-2").click(function() {
+    $(".option-icons2").removeClass("active");
+  });
+});
 
 
-            </script>
+
+              
+              const curve = {
+  x: 0,
+  y: 50,
+  cpx: 250,
+  cpy: 0,
+  endx: 450,
+  endy: 50
+}
+let percent = 0.7
+
+let curveEl = document.getElementById('curve')
+let thumbEl = document.getElementById('thumb')
+
+
+const getQuadraticBezierXYatPercent = (curve, percent) => {
+  let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent 
+    * curve.cpx + Math.pow(percent, 2) * curve.endx
+  let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent 
+    * curve.cpy + Math.pow(percent, 2) * curve.endy
+
+  return { x, y }
+}
+
+const drawCurve = () => {
+  curveEl.setAttribute(
+    'd',
+    `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`
+  )
+}
+
+const drawThumb = percent => {
+	let pos = getQuadraticBezierXYatPercent(curve, percent)
+  document.getElementById('value').textContent = percent * 100
+  
+  thumbEl.setAttribute('cx', pos.x)
+  thumbEl.setAttribute('cy', pos.y)
+}
+
+const moveThumb = e => {
+  console.log(e.target.value)
+  percent = e.target.value / 100
+  drawThumb(percent)
+}
+
+let rangeEl = document.getElementById('range')
+rangeEl.value = percent * 100
+rangeEl.addEventListener('input', moveThumb)
+
+drawCurve()
+drawThumb(percent)
+
+
+
+ </script>
 
 
 
