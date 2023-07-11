@@ -141,11 +141,19 @@ body {
     height:40px
   }
   .temp-bar {
-    top: 37px;
-    right: 98px;
-    position: relative;
+    bottom: 203px;
+    left: 276px;
+    position: absolute;
     width: 165px;
     height: 100%;
+}
+#half-circle {
+  position: absolute;
+  top: 60px;
+  left: 277px;
+}
+.arrow {
+  fill:red;
 }
   
   .data-temp-top-bar {
@@ -610,6 +618,24 @@ height:30px;
     opacity: 1;
     transform: translateY(0);
   }
+}
+#drag {
+  cursor:pointer;
+}
+.oval {
+  fill: #0067ab;
+  stroke-width: -1px;
+  -webkit-text-stroke: thick;
+  stroke: gray;
+}
+.arrow {
+  fill: #0067ab;
+  transform: translate(-2px, 3px);
+  transform-origin: center;
+}
+.path {
+  fill: none;
+  stroke: #979797;
 }
 
 
