@@ -61,6 +61,10 @@
                                 <svg class="temp-icons">
                                     <use href="/sprite-sheet.svg#new_fire"></use>
                                 </svg>
+
+                                 <!-- <svg class="temp-icons">
+                                    <use href="/sprite-sheet.svg#new_snowflake"></use> -->
+                                </svg>
                             </div>
                             <div class="thermo-phase-type">Heat Phase 1</div>
                         </div>
@@ -76,23 +80,33 @@
                     
                      
                         </div>
-                        <div class="wrap">
+   <!------------------------ THUMB SLIDER     -->
+                        <div class="wrapit">
                           <div class="slider-container">
-                            <input id="range" type="range" min="1" max="100" >
-                            <svg id="slider" height="50" width="450">
-                            
-                              <path id="curve" stroke="#fff" stroke-width="4" fill="none" />
-                                <circle id="thumb" stroke="#0067ab" fill="#0067ab" r="10" />
+                           
+                            <svg id="slider" height="350" width="80">
+                              <path id="curve" stroke="gray" stroke-width="4" fill="none" />
+                              <circle id="thumb" stroke="#fff" fill="#fff" r="12" />
+                              <circle id="thumb2" stroke="#fff" fill="#fff" r="12" />
                             </svg>
                           </div>
                         </div>
                         
-                        <div id="value"></div>
+                       <div class="all-Values">
+                       
+
+                      </div>
             </div>
 
+   
+        <div>
+          <input id="range" type="range" min="-50" max="150">
+          <input id="range2" type="range" min="-50" max="150">
+         </div>
         </div>
-        <script>
-            </script>
+        <div id="value"></div>
+        <div id="value2"></div>
+    
 
 
         <div class="data-temp_container">
@@ -184,7 +198,7 @@
                             <li class="dropdown_item-1">Off</li>
                             <li class="dropdown_item-fan">20m</li>
                             <li class="dropdown_item-fan">1hr</li>
-                              <li class="dropdown_item-fan">4hr</li>
+                              <li class="dropdown_item-fan curveit">4hr</li>
                           </ul>
                         </li>
                     </nav>
@@ -201,12 +215,11 @@
                                 <li class="dropdown_item-2">Off</li>
                                 <li class="dropdown_item-motion">20m</li>
                                 <li class="dropdown_item-motion">1hr</li>
-                                  <li class="dropdown_item-motion">4hr</li>
+                                  <li class="dropdown_item-motion curveit">4hr</li>
                               </ul>
                             </li>
                         </nav>
-                        </div>
-              
+                        </div>        
             </div>
             
 
@@ -264,9 +277,7 @@
                 </div>
             </div>
         </div>     
-        <div>
-           
-
+       
             <script>
        
      
@@ -323,57 +334,80 @@ $(document).ready(function() {
 
 
 
-              
-              const curve = {
+// SLIDER 
+const curve = {
   x: 0,
-  y: 50,
-  cpx: 250,
-  cpy: 0,
-  endx: 450,
-  endy: 50
-}
-let percent = 0.7
-
-let curveEl = document.getElementById('curve')
-let thumbEl = document.getElementById('thumb')
+  y: 0,
+  cpx: 125,
+  cpy: 175,
+  endx: 0,
+  endy: 350 };
 
 
+let curveEl = document.getElementById('curve');
+let thumbEl = document.getElementById('thumb');
+let thumbE2 = document.getElementById('thumb2');
+
+// get the XY at the specified percentage along the curve
 const getQuadraticBezierXYatPercent = (curve, percent) => {
-  let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent 
-    * curve.cpx + Math.pow(percent, 2) * curve.endx
-  let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent 
-    * curve.cpy + Math.pow(percent, 2) * curve.endy
+  let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent *
+  curve.cpx + Math.pow(percent, 2) * curve.endx;
+  let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent *
+  curve.cpy + Math.pow(percent, 2) * curve.endy;
 
-  return { x, y }
-}
+  return { x, y };
+};
 
 const drawCurve = () => {
   curveEl.setAttribute(
-    'd',
-    `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`
-  )
-}
+  'd',
+  `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`);
 
-const drawThumb = percent => {
-	let pos = getQuadraticBezierXYatPercent(curve, percent)
-  document.getElementById('value').textContent = percent * 100
-  
-  thumbEl.setAttribute('cx', pos.x)
-  thumbEl.setAttribute('cy', pos.y)
-}
+};
+
+const drawThumb = (percent, thumbElement) => {
+  let pos = getQuadraticBezierXYatPercent(curve, percent);
+  thumbElement.setAttribute('cx', pos.x);
+  thumbElement.setAttribute('cy', pos.y);
+};
+
+let _percent = 0.5;
 
 const moveThumb = e => {
-  console.log(e.target.value)
-  percent = e.target.value / 100
-  drawThumb(percent)
+  let min = Number(document.getElementById('range').getAttribute('min'));
+  let max = Number(document.getElementById('range').getAttribute('max'));
+  let inputRange = max - min;
+  let percent = 1 - ((e.target.value - min) / inputRange);
+  drawThumb(percent, thumbEl);
+
+
+};
+const moveThumb2 = e =>{
+    let min2 = Number(document.getElementById('range2').getAttribute('min'));
+  let max2 = Number(document.getElementById('range2').getAttribute('max'));
+  let inputRange2 = max2 - min2;
+  let percent2 = 1 - ((e.target.value - min2) / inputRange2);
+  drawThumb(percent2, thumbE2);
 }
 
-let rangeEl = document.getElementById('range')
-rangeEl.value = percent * 100
-rangeEl.addEventListener('input', moveThumb)
 
-drawCurve()
-drawThumb(percent)
+
+let rangeEl = document.getElementById('range');
+let rangeE2 = document.getElementById('range2');
+rangeEl.value = _percent * 100;
+rangeEl.addEventListener('input', e => moveThumb(e, thumbEl));
+rangeE2.value = _percent * 100;
+rangeE2.addEventListener('input', e => moveThumb2(e, thumbE2));
+
+// init
+drawCurve();
+drawThumb(_percent, thumbEl);
+drawThumb(_percent, thumbE2);
+
+
+
+
+              
 
 
 
