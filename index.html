@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="script.js"></script>
+
+
 
 </head>
 
@@ -86,16 +85,16 @@
                            
                             <svg id="slider" height="350" width="80">
                               <path id="curve" stroke="gray" stroke-width="4" fill="none" />
-                              <circle id="thumb" stroke="#fff" fill="#fff" r="12" />
-                              <circle id="thumb2" stroke="#fff" fill="#fff" r="12" />
+
+                              <circle id="thumb" stroke="#fff" fill="#fff" r="15" />
+                              <text id="numThumb" x="61.09375" y="148.75" text-anchor="middle" alignment-baseline="central">5</text>
+                              
+                              <circle id="thumb2" stroke="#fff" fill="#fff" r="15" />
+                              <text id="numThumb2" x="61.09375" y="148.75" text-anchor="middle" alignment-baseline="central">5</text>
                             </svg>
                           </div>
                         </div>
-                        
-                       <div class="all-Values">
-                       
-
-                      </div>
+       
             </div>
 
    
@@ -104,8 +103,7 @@
           <input id="range2" type="range" min="-50" max="150">
          </div>
         </div>
-        <div id="value"></div>
-        <div id="value2"></div>
+       
     
 
 
@@ -237,7 +235,7 @@
                        
                         <div class="thermo-box-above">
                             <div>Above</div>
-                            <input type="number" value="42" class="below-temp-set"></input>
+                            <input id="valueAbove" type="number" value="42" class="below-temp-set"></input>
                         </div>
                         
                     </div>
@@ -245,9 +243,8 @@
                        
                         <div class="thermo-box-below">
                             <div>Below</div>
-                            <input type="number" value="72" class="below-temp-set"></input>
-                        </div>
-                       
+                            <input id="valueBelow" type="number" value="72" class="below-temp-set"></input>
+                        </div>   
                     </div>
                 </div>
                 <div class="bottom-container"> <button class="saveBtn">SAVE</button></div>
@@ -276,7 +273,9 @@
                     </div>
                 </div>
             </div>
-        </div>     
+        </div> 
+        <div id="value" ></div>
+        <div id="value2"></div>    
        
             <script>
        
@@ -344,9 +343,14 @@ const curve = {
   endy: 350 };
 
 
+
+
 let curveEl = document.getElementById('curve');
 let thumbEl = document.getElementById('thumb');
 let thumbE2 = document.getElementById('thumb2');
+let numberE1 = document.getElementById('numThumb');
+let numberE2 = document.getElementById('numThumb2')
+
 
 // get the XY at the specified percentage along the curve
 const getQuadraticBezierXYatPercent = (curve, percent) => {
@@ -354,24 +358,40 @@ const getQuadraticBezierXYatPercent = (curve, percent) => {
   curve.cpx + Math.pow(percent, 2) * curve.endx;
   let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent *
   curve.cpy + Math.pow(percent, 2) * curve.endy;
-
   return { x, y };
+
 };
+
 
 const drawCurve = () => {
   curveEl.setAttribute(
   'd',
   `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`);
-
 };
+
 
 const drawThumb = (percent, thumbElement) => {
   let pos = getQuadraticBezierXYatPercent(curve, percent);
   thumbElement.setAttribute('cx', pos.x);
   thumbElement.setAttribute('cy', pos.y);
+  // console.log('Thumb Position:', pos.x, pos.y);
 };
+const drawNumb = (percent, numberElement)=> {
+  let posNum = getQuadraticBezierXYatPercent(curve, percent);
+  numberElement.setAttribute('x', posNum.x);
+  numberElement.setAttribute('y', posNum.y);
+}
+
 
 let _percent = 0.5;
+
+const moveNumber = e => {
+  let min = Number(document.getElementById('range').getAttribute('min'));
+  let max = Number(document.getElementById('range').getAttribute('max'));
+  let inputRange = max - min;
+  let percent = 1 - ((e.target.value - min) / inputRange);
+  drawNumb(percent, numberE1);
+}
 
 const moveThumb = e => {
   let min = Number(document.getElementById('range').getAttribute('min'));
@@ -379,36 +399,101 @@ const moveThumb = e => {
   let inputRange = max - min;
   let percent = 1 - ((e.target.value - min) / inputRange);
   drawThumb(percent, thumbEl);
-
+ 
+// console.log("thumb: " , percent);
 
 };
+const moveNumber2 = e => {
+    let min2 = Number(document.getElementById('range2').getAttribute('min'));
+  let max2 = Number(document.getElementById('range2').getAttribute('max'));
+  let inputRange2 = max2 - min2;
+  let percent2 = 1 - ((e.target.value - min2) / inputRange2);
+  drawNumb(percent2, numberE2);
+}
+
 const moveThumb2 = e =>{
     let min2 = Number(document.getElementById('range2').getAttribute('min'));
   let max2 = Number(document.getElementById('range2').getAttribute('max'));
   let inputRange2 = max2 - min2;
   let percent2 = 1 - ((e.target.value - min2) / inputRange2);
   drawThumb(percent2, thumbE2);
+  // console.log("thumb2: " , percent2);
+  // console.log(percent2, inputRange2);
+
 }
 
 
-
-let rangeEl = document.getElementById('range');
+const rangeEl = document.getElementById('range');
 let rangeE2 = document.getElementById('range2');
+
 rangeEl.value = _percent * 100;
 rangeEl.addEventListener('input', e => moveThumb(e, thumbEl));
+rangeEl.addEventListener('input', e => moveNumber(e, numberE1 ))
+
 rangeE2.value = _percent * 100;
 rangeE2.addEventListener('input', e => moveThumb2(e, thumbE2));
-
+rangeE2.addEventListener('input', e => moveNumber2(e, numberE2));
 // init
 drawCurve();
 drawThumb(_percent, thumbEl);
 drawThumb(_percent, thumbE2);
+drawNumb(_percent, numberE1);
+drawNumb(_percent, numberE2);
 
 
 
 
-              
 
+
+   
+// const rangeInput2 = document.getElementById('range2');
+
+//   const valueDiv = document.getElementById('value');
+//   const valueAboveInput = document.getElementById('valueAbove');
+
+
+//   rangeEl.addEventListener('input', updateValue);
+//   valueAboveInput.addEventListener('input', updateSlider);
+  
+//   function updateValue() {
+//     valueDiv.textContent = rangeEl.value;
+//     valueAboveInput.value = rangeEl.value;
+
+//   }
+//   function updateSlider() {
+//     rangeEl.value = valueAboveInput.value;
+//     updateValue();
+//   }
+//   updateValue();
+  const rangeInput2 = document.getElementById('range2');
+const valueDiv = document.getElementById('value');
+const valueAbove = document.getElementById('valueAbove');
+const numThumbValue2 = document.getElementById('numThumb2')
+
+rangeInput2.addEventListener('input', updateValue);
+function updateValue() {
+  numThumbValue2.textContent = rangeInput2.value;
+  valueDiv.textContent = rangeInput2.value;
+  valueAbove.value = rangeInput2.value;
+}
+updateValue();
+
+
+
+
+
+const rangeInput = document.getElementById('range');
+const valueDiv2 = document.getElementById('value2');
+const valueBelow = document.getElementById('valueBelow');
+const numThumbValue = document.getElementById('numThumb')
+
+rangeInput.addEventListener('input', updateValue2);
+function updateValue2() {
+  numThumbValue.textContent = rangeInput.value;
+  valueDiv2.textContent = rangeInput.value;
+  valueBelow.value = rangeInput.value;
+}
+updateValue2();
 
 
  </script>
