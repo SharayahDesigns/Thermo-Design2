@@ -517,14 +517,16 @@ position:relative;
 }
 .dropdown_menu li {
 	display: none;
-	color: #fff;
-	background-color: #0067ab;
-	padding: 10px 20px;
-	font-size: 16px;
-	opacity: 0;
+	color: #515356;
+    background-color: #F6F6F6;
+    padding: 10px 20px;
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 0;
 }
 .dropdown_menu li:hover {
-	background-color: #2980b9;
+	background-color:#e7ebf3;
+  color:#515356;
 }
 .dropdown:hover .dropdown_menu--animated {
 	display: block;
