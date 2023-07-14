@@ -83,7 +83,7 @@
                         <div class="wrapit">
                           <div class="slider-container">
                            
-                            <svg id="slider" height="350" width="80">
+                            <svg id="slider" height="400" width="150" viewBox="-20 0 190 250">
                               <path id="curve" stroke="gray" stroke-width="4" fill="none" />
 
                               <circle id="thumb" stroke="#fff" fill="#fff" r="15" />
@@ -360,6 +360,7 @@ const getQuadraticBezierXYatPercent = (curve, percent) => {
   curve.cpy + Math.pow(percent, 2) * curve.endy;
   return { x, y };
 
+
 };
 
 
@@ -374,8 +375,9 @@ const drawThumb = (percent, thumbElement) => {
   let pos = getQuadraticBezierXYatPercent(curve, percent);
   thumbElement.setAttribute('cx', pos.x);
   thumbElement.setAttribute('cy', pos.y);
-  // console.log('Thumb Position:', pos.x, pos.y);
+  console.log('Thumb Position:', pos.x, pos.y);
 };
+
 const drawNumb = (percent, numberElement)=> {
   let posNum = getQuadraticBezierXYatPercent(curve, percent);
   numberElement.setAttribute('x', posNum.x);
